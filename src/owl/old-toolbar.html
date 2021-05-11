@@ -1,0 +1,205 @@
+<div class="row">
+  <div class="col-3">
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="replay_5" @click="PlayerBefore" id="btn_back">
+      <q-tooltip content-class="bg-orange-9">快捷键：←</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">快退</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" :icon="ppicon" @click="VPP" id="btn_pp">
+      <q-tooltip content-class="bg-orange-9">快捷键：空格</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">播放/暂停</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="forward_5" @click="PlayerNext" id="btn_next">
+      <q-tooltip content-class="bg-orange-9">快捷键：→</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">快进</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="autorenew" @click="allBack" id="btn_clear">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+F1</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">清空</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="undo" @click="CanvasUndo" id="btn_undo">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+Z</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">撤销</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" :icon="mouseico" @click="Pen('mouse')" id="btn_mouse">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+F2，在鼠标和触屏设备中切换</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">鼠标/触屏</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="brush" @click="Pen('pencil')" id="btn_pen">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+F3</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">画笔</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="trending_up" @click="Pen('arrow')" id="btn_arrow">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+F5</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">箭头</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="radio_button_unchecked" @click="Pen('circle')" id="btn_circle">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+F6</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">圆形</p>
+  </div>
+  <div class="col">
+    <q-btn flat round color="primary" icon="check_box_outline_blank" @click="Pen('rectangle')" id="btn_rect">
+      <q-tooltip content-class="bg-orange-9">快捷键：Ctrl+F7</q-tooltip>
+    </q-btn>
+    <p class="btn-hint">矩形</p>
+  </div>
+  <div class="col">
+    <q-btn-dropdown flat round id="ColorPanel" style="color: #f44336" icon="color_lens">
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#f44336')">
+          <q-item-section avatar>
+            <q-avatar color="red"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#e91e63')">
+          <q-item-section avatar>
+            <q-avatar color="pink"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#9c27b0')">
+          <q-item-section avatar>
+            <q-avatar color="purple"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#673ab7')">
+          <q-item-section avatar>
+            <q-avatar color="deep-purple"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#3f51b5')">
+          <q-item-section avatar>
+            <q-avatar color="indigo"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#2196f3')">
+          <q-item-section avatar>
+            <q-avatar color="blue"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#03a9f4')">
+          <q-item-section avatar>
+            <q-avatar color="light-blue"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#00bcd4')">
+          <q-item-section avatar>
+            <q-avatar color="cyan"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#009688')">
+          <q-item-section avatar>
+            <q-avatar color="teal"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#4caf50')">
+          <q-item-section avatar>
+            <q-avatar color="green"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#8bc34a')">
+          <q-item-section avatar>
+            <q-avatar color="light-green"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#cddc39')">
+          <q-item-section avatar>
+            <q-avatar color="lime"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#ffeb3b')">
+          <q-item-section avatar>
+            <q-avatar color="yellow"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#ffc107')">
+          <q-item-section avatar>
+            <q-avatar color="amber"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#ff9800')">
+          <q-item-section avatar>
+            <q-avatar color="orange"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#ff5722')">
+          <q-item-section avatar>
+            <q-avatar color="deep-orange"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#795548')">
+          <q-item-section avatar>
+            <q-avatar color="brown"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#9e9e9e')">
+          <q-item-section avatar>
+            <q-avatar color="grey"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
+        <q-item clickable v-close-popup @click="PenColor('#607d8b')">
+          <q-item-section avatar>
+            <q-avatar color="blue-grey"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-btn-dropdown>
+    <p class="btn-hint" style="padding-top: 5px">颜色</p>
+  </div>
+  <div class="col-3">
+  </div>
+
+</div>
